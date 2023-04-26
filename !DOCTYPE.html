@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChatGPT Demo</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#submit-button').click(function() {
+        var question = $('#question-input').val();
+        $.get('https://api.chatgpt.com/ask', {
+          key: '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',
+          question: question
+        })
+        .done(function(data) {
+          console.log(data);
+          $('#answer-box').append('<div class="chat-bubble">' + data.answer + '</div>');
+        })
+        .fail(function(error) {
+          console.error(error);
+          $('#answer-box').append('<div class="error-bubble">Sorry, there was an error processing your question. Please try again later.</div>');
+        });
+      });
+    });
+  </script>
+  <style>
+    .chat-bubble {
+      background-color: #eee;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    .error-bubble {
+      background-color: #ffcccc;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>ChatGPT Demo</h1>
+  <input type="text" id="question-input" placeholder="Type your question here...">
+  <button id="submit-button">Submit</button>
+  <div id="answer-box"></div>
+</body>
+</html>
+
