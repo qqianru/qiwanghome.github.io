@@ -1,2 +1,2 @@
 # qiwanghome
-Home and Qi and Wang
+Home of Qi and Wang
